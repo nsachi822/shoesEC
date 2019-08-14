@@ -7,6 +7,7 @@ public class AddAccountForm {
 	private String password;
 	private String checkPassword;
 	private Integer tel;
+	private Integer postalCode;
 	private String address;
 	private String email;
 	
@@ -40,6 +41,13 @@ public class AddAccountForm {
 	}
 	public void setTel(Integer tel) {
 		this.tel = tel;
+	}
+	
+	public Integer getPostalCode() {
+		return postalCode;
+	}
+	public void setPostalCode(Integer postalCode) {
+		this.postalCode = postalCode;
 	}
 	public String getAddress() {
 		return address;

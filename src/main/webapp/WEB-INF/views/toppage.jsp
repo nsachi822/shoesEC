@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>   
+<%@ include file="common.jsp"  %> 
    
 <!DOCTYPE html>
 <html>
@@ -20,6 +17,8 @@
 .content{
     margin: 0 auto;
     padding: 40px;
+	display: inline-block;
+	
 }
 .modal{
     display: none;
@@ -46,16 +45,15 @@
 </style>
 </head>
 <body>
-<h2>shoes market</h2>
 
 	<!-- item一覧表示 -->
-	<div class="content">
 	<c:forEach var="items" items="${itemsList}">	 
-	<img src="../img/${items.imagePath}" width="213" height="250" /><br>
-    <a class="js-modal-open" data-target="${items.itemName}" href=""  ><c:out value="${items.itemName}"/> </a><br>
-	<c:out value="${items.brandName}"/><br>
-	</c:forEach>	
+	<div class="content">
+	<p><img src="../img/${items.imagePath}" width="213" height="250"/>
+    <p><a class="js-modal-open" data-target="${items.itemName}" href=""  ><c:out value="${items.itemName}"/> </a>
+	<p><c:out value="${items.brandName}"/>
     </div>
+	</c:forEach>
     
     <!-- item詳細表示・hiddenで値を送信 -->
     <c:forEach var="items" items="${itemsList}">
