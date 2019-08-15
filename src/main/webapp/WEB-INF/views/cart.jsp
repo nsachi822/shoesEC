@@ -10,6 +10,7 @@
 <body>
 <h1>shopping cart</h1>
 	<c:forEach var ="cart" items="${cartList}">
+	<c:if test="${cart.userId == user.userId}">
 	<img src="..${pageContext.request.contextPath}/img/${cart.imagePath}" width="213" height="250" />　<br>
 	name: <c:out value="${cart.itemName}"/><br>
 	brand: <c:out value="${cart.brandName}"/><br>
@@ -29,7 +30,7 @@
 		<input type = "hidden" name = "brandName" value = "${cart.brandName}" form ="cart">
 		<input type = "hidden" name = "price" value= "${cart.price}" form ="cart">
 		<input type  ="hidden" name = "quantity" value ="${cart.quantity}" form ="cart">
-	
+	</c:if>
 	</c:forEach>
 	
 	<form:form modelAttribute="itemOrderForm" action="${pageContext.request.contextPath}/confirmorder" id="cart">

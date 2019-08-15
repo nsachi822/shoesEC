@@ -88,8 +88,8 @@
 							<option value="12">12</option>
 							</select>　<br>
             
-            <input type = "submit" value="add to cart">            
             <input type ="hidden" name = "userId" value="${user.userId}">
+            <input type = "submit" value="add to cart">            
             </form:form>          
             <a class="js-modal-close" href="">close</a>
         </div><!--modal__inner-->

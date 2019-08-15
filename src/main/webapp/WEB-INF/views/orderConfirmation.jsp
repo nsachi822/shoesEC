@@ -35,11 +35,14 @@ function disp(){
 
 <h2>your orders</h2>
 	<c:forEach var="cart" items="${cartList}">
+	<c:if test="${cart.userId == user.userId}">
+	
 	<img src="..${pageContext.request.contextPath}/img/${cart.imagePath}" width="213" height="250" />　<br>
 	<c:out value="${cart.itemName}"/> <br>
 	<c:out value="${cart.brandName}"/>	<br>
 	<input type = "hidden" name = "userId" value ="${cart.userId}" form ="order">
 	<input type = "hidden" name = "itemId" value = "${cart.itemId}" form ="order">	
+	</c:if>
 	</c:forEach>
 
 

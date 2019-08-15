@@ -1,18 +1,17 @@
 package com.example.web;
 
-import java.sql.Date;
 
 public class OrderInfoForm {
 	
-	Integer orderId;
+	Long orderId;
 	Integer userId;
 	Integer totalPrice;
 	String orderDate;
 	
-	public Integer getOrderId() {
+	public Long getOrderId() {
 		return orderId;
 	}
-	public void setOrderId(Integer orderId) {
+	public void setOrderId(Long orderId) {
 		this.orderId = orderId;
 	}
 	public Integer getUserId() {

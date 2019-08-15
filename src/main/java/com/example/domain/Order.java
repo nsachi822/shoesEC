@@ -1,20 +1,32 @@
 package com.example.domain;
 
-import java.sql.Date;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import lombok.Data;
+
+@JsonPropertyOrder({"orderID","userID","totalPrice","arrivalDate","orderDate"})
+@Data
 public class Order {
 	
-	private Integer orderId;
+	@JsonProperty("orderID")
+	private Long orderId;
+	@JsonProperty("userID")
 	private Integer userId;
+	
 	private Integer status;
+	@JsonProperty("totalPrice")
 	private Integer totalPrice;
+	@JsonProperty("arrivalDate")
 	private String orderDate;
+	@JsonProperty("orderDate")
+	private String date;
 	
 	
-	public Integer getOrderId() {
+	public Long getOrderId() {
 		return orderId;
 	}
-	public void setOrderId(Integer orderId) {
+	public void setOrderId(Long orderId) {
 		this.orderId = orderId;
 	}
 	public Integer getUserId() {
@@ -41,6 +53,29 @@ public class Order {
 	public void setOrderDate(String orderDate) {
 		this.orderDate = orderDate;
 	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	
+	public Order() {
+		
+	}
+	public Order(Long orderId, Integer userId, Integer status, Integer totalPrice, String orderDate, String date) {
+		super();
+		this.orderId = orderId;
+		this.userId = userId;
+		this.status = status;
+		this.totalPrice = totalPrice;
+		this.orderDate = orderDate;
+		this.date = date;
+	}
+	
+	
+	
 
+	
 	
 }

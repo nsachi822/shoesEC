@@ -5,7 +5,7 @@ public class User {
 	private Integer userId;
 	private String userName;
 	private String password;
-	private Integer tel;
+	private String tel;
 	private Integer postalCode;
 	private String address;
 	private String email;
@@ -29,10 +29,10 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Integer getTel() {
+	public String getTel() {
 		return tel;
 	}
-	public void setTel(Integer tel) {
+	public void setTel(String tel) {
 		this.tel = tel;
 	}
 	

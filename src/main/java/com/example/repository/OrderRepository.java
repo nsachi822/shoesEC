@@ -38,11 +38,12 @@ public class OrderRepository {
 	
 	private static final RowMapper <Order> order_rowMapper = (rs,i) -> {
 		Order order = new Order();
-		order.setOrderId(rs.getInt("orderid"));
+		order.setOrderId(rs.getLong("orderid"));
 		order.setUserId(rs.getInt("userid"));
 		order.setStatus(rs.getInt("status"));
 		order.setOrderDate(rs.getString("orderdate"));
 		order.setTotalPrice(rs.getInt("totalprice"));
+		order.setDate(rs.getString("date"));
 		return order;
 		
 	};
@@ -93,7 +94,7 @@ public class OrderRepository {
 	
 //	orderの中身を表示
 	public List<Order> findAllOrder() {
-		String sql = "SELECT orderid, userid, totalprice, orderdate, status FROM orders";
+		String sql = "SELECT orderid, userid, totalprice, orderdate, status,date FROM orders";
 		List<Order> orderList = template.query(sql, order_rowMapper);
 		return orderList;
 	}

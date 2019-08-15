@@ -1,8 +1,8 @@
 package com.example.web;
 
-import java.sql.Date;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +24,10 @@ public class OrderController {
 	
 	@Autowired
 	private HttpSession session;
+
+	@Autowired
+	private ServletContext application;
+
 	
 	@ModelAttribute
 	public ItemOrderForm itemOrderForm() {
@@ -49,6 +53,7 @@ public class OrderController {
 	public String insertCart(Model model,ItemOrderForm itemOrderForm) {
 		
 		Integer cartId = itemOrderForm.getCartId();
+		Integer userId = itemOrderForm.getUserId();
 		Integer itemId = itemOrderForm.getItemId();
 		String itemName = itemOrderForm.getItemName();
 		String size = itemOrderForm.getSize();
@@ -61,6 +66,7 @@ public class OrderController {
 		
 		Cart cart = new Cart();
 		cart.setCartId(cartId);
+		cart.setUserId(userId);
 		cart.setItemId(itemId);
 		cart.setItemName(itemName);
 		cart.setSize(size);
@@ -108,7 +114,7 @@ public class OrderController {
 	@RequestMapping(value="/orderfinished")
 	public String orderfinish(Model model, Order order,OrderInfoForm oiForm) {
 		
-		Integer orderId = oiForm.getOrderId();
+		Long orderId = oiForm.getOrderId();
 		Integer userId = oiForm.getUserId();
 		Integer totalPrice = oiForm.getTotalPrice();
 		String orderDate = oiForm.getOrderDate();
@@ -123,4 +129,12 @@ public class OrderController {
 		return "complete";
 	}
 	
+//	注文履歴を表示
+	@RequestMapping(value="/history")
+	public String orderHistory() {
+		List<Order> orderList = orderService.findAllOrder();
+		application.setAttribute("orderList", orderList);
+		return "orderhistory";
+		
+	}
 }

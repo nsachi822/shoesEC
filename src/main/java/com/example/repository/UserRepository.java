@@ -24,7 +24,7 @@ public class UserRepository {
 		user.setUserId(rs.getInt("userid"));
 		user.setUserName(rs.getString("username"));
 		user.setPassword(rs.getString("password"));
-		user.setTel(rs.getInt("tel"));
+		user.setTel(rs.getString("tel"));
 		user.setAddress(rs.getString("address"));
 		user.setEmail(rs.getString("email"));
 		return user ;

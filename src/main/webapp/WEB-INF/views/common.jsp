@@ -34,7 +34,10 @@
 
 </head>
 
-<body>
+<header>
+
+<c:if test="${user==null}" var="check"/>
+<c:if test="${check}">	
 <nav class="navbar navbar-expand-sm navbar-light bg-light mt-3 mb-3">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -46,19 +49,51 @@
                     <a class="nav-link" href="${pageContext.request.contextPath}/login">login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/addcart">shopping cart</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/cartlist">cart</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">orders</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/member/form">create account</a>
                 </li>
             </ul>
         </div>
-    </nav>    
+    </nav>  
+</c:if>
+
+<c:if test="${!check}">	
+	
+	
+	<nav class="navbar navbar-expand-sm navbar-light bg-light mt-3 mb-3">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/list/">shoes market</a>
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+            	<li class="nav-item">
+                    <a class="nav-link"> welcome, <c:out value="${user.userName}"/> 　</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/#">logout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/cartlist">cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/history">orders</a>
+                </li>
+            </ul>
+        </div>
+    </nav>  
+</c:if>
+	
+
+    
+      
 		<div class="hero">
-			<div><img class="hero__img" src="../img/run1.jpg" alt=""></div>
-			<div><img class="hero__img" src="../img/run2.jpg" alt=""></div>
-			<div><img class="hero__img" src="../img/run3.jpg" alt=""></div>
-			<div><img class="hero__img" src="../img/run4.jpg" alt=""></div>
+			<div><img class="hero__img" src="${pageContext.request.contextPath}/img/run1.jpg" alt=""></div>
+			<div><img class="hero__img" src="${pageContext.request.contextPath}/img/run2.jpg" alt=""></div>
+			<div><img class="hero__img" src="${pageContext.request.contextPath}/img/run3.jpg" alt=""></div>
+			<div><img class="hero__img" src="${pageContext.request.contextPath}/img/run4.jpg" alt=""></div>
 		</div>
 		
 		<script>
@@ -73,4 +108,4 @@
 
 
 
-</body>
+</header>
