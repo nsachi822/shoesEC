@@ -15,19 +15,19 @@
 	 <div class="login-popup-heading text-center">
 	 <h4><i class="fa fa-lock" aria-hidden="true"></i> Login </h4>                        
      </div>
+     <form:errors path="loginForm.*" style="color:red"/>
 	<form:form id="loginMember" role="form" modelAttribute="loginForm" action ="${pageContext.request.contextPath}/logincheck">
 		<div class="form-group">
-		<form:input class="form-control" id="user_id" path="email" placeholder="Email" required autoforcus />
+		<form:input class="form-control" id="user_id" path="email" placeholder="Email"  required="required" oninvalid="this.setCustomValidity('Value is required')"/>
 		</div>
 		 <div class="form-group">
-		<form:password class="form-control" id="password" path="password" placeholder="Password"/>
+		<form:password class="form-control" id="password" path="password" placeholder="Password" required="required" oninvalid="this.setCustomValidity('Value is required')"/>
 		</div>
 		<input type="submit" value="login" class="btn btn-default login-popup-btn">
 	</form:form>
 		 <div class="form-group text-center">	
 		<a href = "${pageContext.request.contextPath}/member/form" class="text-center">create new account</a></div>
 		</div>
-
 
 </body>
 </html>

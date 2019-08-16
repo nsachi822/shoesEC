@@ -70,7 +70,7 @@
         <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
             	<li class="nav-item">
-                    <a class="nav-link"> welcome, <c:out value="${user.userName}"/> 　</a>
+                    <a class="nav-link"> welcome,<c:out value="${user.userName}"/> </a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="${pageContext.request.contextPath}/logout/sessionInvalidate">logout</a>
@@ -85,10 +85,11 @@
         </div>
     </nav>  
 </c:if>
+
+
 	
 
-    
-      
+        
 		<div class="hero">
 			<div><img class="hero__img" src="${pageContext.request.contextPath}/img/run1.jpg" alt=""></div>
 			<div><img class="hero__img" src="${pageContext.request.contextPath}/img/run2.jpg" alt=""></div>

@@ -6,11 +6,11 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.domain.User;
 import com.example.service.UserService;
@@ -36,7 +36,7 @@ public class AddAccountController {
 		}
 	
 	@RequestMapping(value="/create")
-	public String addForm(AddAccountForm acForm,BindingResult result,RedirectAttributes redirectAttributes) {
+	public String addForm(AddAccountForm acForm,BindingResult result,Model model) {
 		
 		String password = acForm.getPassword();
 		String checkPassword = acForm.getPassword();
@@ -51,9 +51,9 @@ public class AddAccountController {
 		User user = new User();
 		BeanUtils.copyProperties(acForm, user);
 		userService.addUser(user);
-		redirectAttributes.addFlashAttribute("user",userList);
+		model.addAttribute("user",userList);
 		
-		return "redirect:/login";
+		return "redirect:/list/";
 		
 		
 		

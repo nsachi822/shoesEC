@@ -50,7 +50,7 @@ public class LoginController {
 		User user = userService.findByEmailAndPassword(email,password);
 		
 		if(user == null) {
-			ObjectError error = new ObjectError ("loginerror","メールアドレスまたパスワードが違います");
+			ObjectError error = new ObjectError ("loginerror","Not a valid account name or password.");
 			result.addError(error);
 			return index();
 		}
