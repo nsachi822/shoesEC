@@ -3,6 +3,8 @@ package com.example.csv;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -27,6 +29,9 @@ public class CsvController {
 	@Autowired
 	public OrderService orderService;
 	
+	@Autowired
+	HttpSession session;
+	
 	public String getCsvText() throws JsonProcessingException{
 		CsvMapper mapper = new CsvMapper();
 		
@@ -34,7 +39,10 @@ public class CsvController {
 		
 		CsvSchema schema = mapper.schemaFor(Order.class).withHeader();
 		
+		
 		List<Order> orderList = orderService.findAllOrder();
+		session.setAttribute("orderList",orderList);
+		
 		
 		return mapper.writer(schema).writeValueAsString(orderList);
 	}

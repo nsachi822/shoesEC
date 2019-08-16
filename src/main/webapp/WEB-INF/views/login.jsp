@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user.css">
 <meta charset="UTF-8">
 <title>Login/shoes market</title>
+<style></style>
 </head>
 <body>
 	<div class="login-popup-wrap new_login_popup"> 
@@ -16,7 +17,7 @@
      </div>
 	<form:form id="loginMember" role="form" modelAttribute="loginForm" action ="${pageContext.request.contextPath}/logincheck">
 		<div class="form-group">
-		<form:input class="form-control" id="user_id" path="email" placeholder="Email"/>
+		<form:input class="form-control" id="user_id" path="email" placeholder="Email" required autoforcus />
 		</div>
 		 <div class="form-group">
 		<form:password class="form-control" id="password" path="password" placeholder="Password"/>

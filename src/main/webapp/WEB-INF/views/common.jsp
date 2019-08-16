@@ -73,7 +73,7 @@
                     <a class="nav-link"> welcome, <c:out value="${user.userName}"/> 　</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/#">logout</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/logout/sessionInvalidate">logout</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath}/cartlist">cart</a>

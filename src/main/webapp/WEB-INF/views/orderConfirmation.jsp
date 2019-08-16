@@ -4,16 +4,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user.css">
 <meta charset="UTF-8">
 <title>order confirmation/shoes market</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" >
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
-<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" >
-
-<script>
-function disp(){
+	<script>
+	function disp(){
 
 	if(window.confirm('Do you want to confirm the order?')){
 
@@ -28,52 +28,89 @@ function disp(){
 }
 </script>
 
-
+<style>
+.content{
+    margin: 0 auto;
+    padding: 40px;
+	display: inline-block;
+	
+}
+</style>
 </head>
-<body>
-<h1>order confirmation</h1>
 
-<h2>your orders</h2>
+
+<body>
+ <div class="login-popup-heading text-center">
+	 <h4><i class="fa fa-lock" aria-hidden="true"></i> Order </h4>                        
+     </div>
+     
+	<div class="text-center">
 	<c:forEach var="cart" items="${cartList}">
 	<c:if test="${cart.userId == user.userId}">
-	
+	<div class="content">
 	<img src="..${pageContext.request.contextPath}/img/${cart.imagePath}" width="213" height="250" />　<br>
 	<c:out value="${cart.itemName}"/> <br>
 	<c:out value="${cart.brandName}"/>	<br>
 	<input type = "hidden" name = "userId" value ="${cart.userId}" form ="order">
 	<input type = "hidden" name = "itemId" value = "${cart.itemId}" form ="order">	
+	</div>
 	</c:if>
 	</c:forEach>
+	</div>
 
 
-<h2>sub total</h2>
-
+	<div class="login-popup-heading text-center">
+	 <h4><i class="fa fa-lock" aria-hidden="true"></i> Price </h4>                        
+     </div>
 	<c:set var="price" value="${0}"/>
 <c:forEach var="cart" items="${cartList}">
     <c:set var="price" value="${price + cart.price}" />
 </c:forEach>
-<p>¥<fmt:formatNumber value ="${price + cart.price}" pattern="###,###" /></p>
+	
+<p class="text-center">¥<fmt:formatNumber value ="${price + cart.price}" pattern="###,###" /></p>
 		<input type="hidden" name="totalPrice" value= "${price + cart.price}" form="order">
 
-<h2>the destination address form</h2>
-<form>
-	name: <input type="text" name="name" placeHolder="Name"> <br>
-	postal code: <input type ="text" name="postalCode" placeHolder="PostalCode"> <br>
-	address: <input type ="text" name="address" placeHolder="Address"> <br>
-	phone number: <input type ="text" name="phoneNumber" placeHolder="PhoneNumber"> <br>
+	<div class="login-popup-heading text-center">
+	 <h4><i class="fa fa-lock" aria-hidden="true"></i> Personal Information </h4>                        
+     </div>
 	
-	delivery date: <input type="text" name ="orderDate" value="${order.orderDate}"  id="datepicker" form="order"><br>
+	<div class="login-popup-wrap new_login_popup">      
+	<form>
+	<div class="form-group">
+	name: <input class="form-control" type="text" name="name" placeHolder="Name"> <br>
+	</div>
+	<div class="form-group">
+	postal code: <input class="form-control" type ="text" name="postalCode" placeHolder="PostalCode"> <br>
+	</div>
+	<div class="form-group">
+	address: <input class="form-control" type ="text" name="address" placeHolder="Address"> <br>
+	</div>
+	<div class="form-group">
+	phone number: <input class="form-control" type ="text" name="phoneNumber" placeHolder="PhoneNumber"> <br>
+	</div>
+	<div class="form-group">
+	delivery date: <input  class="form-control" type="text" name ="orderDate" value="${order.orderDate}"  id="datepicker" form="order"><br>
+	</div>
+
+	</form>
+	</div>
 	
-
-</form>
-
-<h2>Method of payment</h2>
+	<div class="login-popup-wrap new_login_popup"> 
+	<div class="login-popup-heading text-center">
+	 <h4><i class="fa fa-lock" aria-hidden="true"></i> Method of Payment </h4>                        
+     </div>
+     						<div class="form-group">
+     							<div class="text-center">
 							 <input type="radio" name="responsibleOrder" checked="checked"> cash
 							　<input type="radio" name="responsibleOrder" > credit card
-							<br>
-							card number：<input type = "text" placeholder ="card_number"><br>
-							limit：	
-							<select name="card_exp_year" required>
+								</div>
+							</div>
+							<div class="form-group">
+							card number：<input class="form-control" type = "text" placeholder ="card_number">
+							</div>
+							<div class="form-group">
+							limit(month)：	
+							<select class="form-control" name="card_exp_year" required>
 							<option value="">-</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
@@ -87,9 +124,11 @@ function disp(){
 							<option value="10">10</option>
 							<option value="11">11</option>
 							<option value="12">12</option>
-							</select>　month
-							
-							<select name="card_exp_month" required>
+							</select>　
+							</div>
+							<div class="form-group">
+							limit(year)：
+							<select class="form-control" name="card_exp_month" required>
 							<option value="">-</option>
 							<option value="2018">2018</option>
 							<option value="2019">2019</option>
@@ -112,16 +151,21 @@ function disp(){
 							<option value="2036">2036</option>
 							<option value="2037">2037</option>
 							<option value="2038">2038</option>
-							</select>　year
-							<br>
-							card name：　<input type ="text" placeholder ="card_name" required><br>
-							security code： <input type="text" placeholder ="card_cvv" required><br>
-				
+							</select>　
+							</div>
+							<div class="form-group">
+							card name：　<input class="form-control" type ="text" placeholder ="card_name" required>
+							</div>
+							<div class="form-group">
+							security code： <input class="form-control" type="text" placeholder ="card_cvv" required>
+							</div>
 	<form:form modelAttribute="orderInfoForm" action="${pageContext.request.contextPath}/orderfinished" onClick="disp()"  id="order">
-	 <button type="submit">order</button>
+	 <button class="btn btn-default login-popup-btn" type="submit">order</button>
 	</form:form>
-	<button type="submit" onclick="location.href='${pageContext.request.contextPath}/cartlist/'">back to your cart</button>			
-							
+	</div>
+	 <div class="form-group text-center">
+	 <a href="${pageContext.request.contextPath}/cartlist/" class="text-center">back to your cart</a>		
+	</div>						
 							
 							
 <script>

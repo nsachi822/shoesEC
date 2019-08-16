@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/user.css">
 <meta charset="UTF-8">
 <title>HOME/shoes market</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -46,7 +47,12 @@
 </head>
 <body>
 
+	
+	 <div class="login-popup-heading text-center">
+	 <h4><i class="fa fa-lock" aria-hidden="true"></i> Goods </h4>                        
+     </div>
 	<!-- item一覧表示 -->
+	<div class="text-center">
 	<c:forEach var="items" items="${itemsList}">	 
 	<div class="content">
 	<p><img src="../img/${items.imagePath}" width="213" height="250"/>
@@ -54,22 +60,27 @@
 	<p><c:out value="${items.brandName}"/>
     </div>
 	</c:forEach>
+	</div>
     
     <!-- item詳細表示・hiddenで値を送信 -->
     <c:forEach var="items" items="${itemsList}">
     <div id="${items.itemName}" class="modal js-modal">
         <div class="modal__bg js-modal-close"></div>
         <div class="modal__content">
+  			<div class="text-center">
         	<form:form modelAttribute="itemOrderForm"
 							action="${pageContext.request.contextPath}/addcart">
+    <div class="login-popup-heading text-center">
+	 <h4><i class="fa fa-lock" aria-hidden="true"></i> About </h4>                        
+     </div>
             <p><img src="../img/${items.imagePath}" width="213" height="250" /></p>
             <input type ="hidden" name="imagePath" value="${items.imagePath}">
-            <p>product: <c:out value="${items.itemName}"/></p>
+            <p><c:out value="${items.itemName}"/></p>
             <input type ="hidden" name="itemName" value="${items.itemName}"> 
             <input type ="hidden" name="itemId" value="${items.itemId}">           
-            <p>brand: <c:out value="${items.brandName}"/></p>
+            <p><c:out value="${items.brandName}"/></p>
             <input type = "hidden" name="brandName" value="${items.brandName}">
-            <p>price: ¥<fmt:formatNumber value="${items.price}" pattern="###,###" /></p>
+            <p><fmt:formatNumber value="${items.price}" pattern="###,###" /></p>
             <input type="hidden" name="price" value="${items.price}">
             size: <input type="radio" value="S" name="size">S <input type ="radio" value="M" name="size"> M <br>
             quantity: <select name="quantity">
@@ -89,9 +100,12 @@
 							</select>　<br>
             
             <input type ="hidden" name = "userId" value="${user.userId}">
-            <input type = "submit" value="add to cart">            
-            </form:form>          
-            <a class="js-modal-close" href="">close</a>
+            <input type = "submit" value="add to cart" class="btn btn-default login-popup-btn">            
+            </form:form>  
+            <div class="form-group text-center">        
+            <a class="js-modal-close" href="" class="text-center">close</a>
+            </div>
+            </div>
         </div><!--modal__inner-->
     </div><!--modal-->
     </c:forEach>
