@@ -39,5 +39,9 @@ public class OrderService {
 	public List<Order> findAllOrder(){
 		return orderRepository.findAllOrder();
 	}
+	
+	public void deleteAll() {
+		orderRepository.deleteAll();
+	}
 }
 

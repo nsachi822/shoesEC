@@ -6,7 +6,7 @@ public class AddAccountForm {
 	private String userName;
 	private String password;
 	private String checkPassword;
-	private Integer tel;
+	private String tel;
 	private Integer postalCode;
 	private String address;
 	private String email;
@@ -36,10 +36,10 @@ public class AddAccountForm {
 	public void setCheckPassword(String checkPassword) {
 		this.checkPassword = checkPassword;
 	}
-	public Integer getTel() {
+	public String getTel() {
 		return tel;
 	}
-	public void setTel(Integer tel) {
+	public void setTel(String tel) {
 		this.tel = tel;
 	}
 	

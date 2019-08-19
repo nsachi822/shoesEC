@@ -53,6 +53,7 @@
 	<c:out value="${cart.brandName}"/>	<br>
 	<input type = "hidden" name = "userId" value ="${cart.userId}" form ="order">
 	<input type = "hidden" name = "itemId" value = "${cart.itemId}" form ="order">	
+	<input type = "hidden" name = "itemName" value = "${cart.itemName}" form = "order">
 	</div>
 	</c:if>
 	</c:forEach>

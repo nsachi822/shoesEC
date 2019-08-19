@@ -44,6 +44,7 @@ public class OrderRepository {
 		order.setOrderDate(rs.getString("orderdate"));
 		order.setTotalPrice(rs.getInt("totalprice"));
 		order.setDate(rs.getString("date"));
+		order.setItemName(rs.getString("itemname"));
 		return order;
 		
 	};
@@ -77,7 +78,7 @@ public class OrderRepository {
 //	orderにinsert
 	public Order setOrder(Order order) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
-		String insertSql = "INSERT INTO orders(userid,totalprice, status,orderdate,date) VALUES(:userId, :totalPrice, :status, :orderDate, current_timestamp)";
+		String insertSql = "INSERT INTO orders(userid,totalprice, status,orderdate,date,itemname) VALUES(:userId, :totalPrice, :status, :orderDate, current_timestamp,:itemName)";
 		template.update(insertSql,param);
 		return order;
 		
@@ -94,10 +95,16 @@ public class OrderRepository {
 	
 //	orderの中身を表示
 	public List<Order> findAllOrder() {
-		String sql = "SELECT orderid, userid, totalprice, orderdate, status,date FROM orders";
+		String sql = "SELECT orderid, userid, totalprice, orderdate, status,date,itemName FROM orders";
 		List<Order> orderList = template.query(sql, order_rowMapper);
 		return orderList;
 	}
 
+//	order完了後、cartの中身を全部削除
+	public void deleteAll() {
+		String deleteSql = "DELETE FROM cart";
+		SqlParameterSource param = new MapSqlParameterSource();
+		template.update(deleteSql,param);
+	}
 
 }

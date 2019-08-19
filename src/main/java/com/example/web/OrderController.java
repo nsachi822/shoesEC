@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Cart;
 import com.example.domain.Order;
+import com.example.domain.User;
 import com.example.service.OrderService;
 
 @Controller
@@ -51,6 +52,12 @@ public class OrderController {
 //	cartに商品を追加
 	@RequestMapping(value="/addcart")
 	public String insertCart(Model model,ItemOrderForm itemOrderForm) {
+		
+		//ログインしていない場合ログイン画面に遷移
+				User user = (User)session.getAttribute("user");
+				if(user == null) {
+					return "redirect:/login";
+				}	
 		
 		Integer cartId = itemOrderForm.getCartId();
 		Integer userId = itemOrderForm.getUserId();
@@ -118,13 +125,17 @@ public class OrderController {
 		Integer userId = oiForm.getUserId();
 		Integer totalPrice = oiForm.getTotalPrice();
 		String orderDate = oiForm.getOrderDate();
+		String itemName = oiForm.getItemName();
 		
 		order.setOrderId(orderId);
 		order.setUserId(userId);
 		order.setTotalPrice(totalPrice);
 		order.setOrderDate(orderDate);
+		order.setItemName(itemName);
 		
 		orderService.setOrder(order);
+		
+		orderService.deleteAll();
 
 		return "complete";
 	}

@@ -7,6 +7,7 @@ public class OrderInfoForm {
 	Integer userId;
 	Integer totalPrice;
 	String orderDate;
+	String itemName;
 	
 	public Long getOrderId() {
 		return orderId;
@@ -32,6 +33,13 @@ public class OrderInfoForm {
 	public void setOrderDate(String orderDate) {
 		this.orderDate = orderDate;
 	}
+	public String getItemName() {
+		return itemName;
+	}
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+	
 	
 	
 

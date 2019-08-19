@@ -21,6 +21,7 @@ public class Order {
 	private String orderDate;
 	@JsonProperty("orderDate")
 	private String date;
+	private String itemName;
 	
 	
 	public Long getOrderId() {
@@ -59,7 +60,13 @@ public class Order {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	
+		
+	public String getItemName() {
+		return itemName;
+	}
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
 	public Order() {
 		
 	}
