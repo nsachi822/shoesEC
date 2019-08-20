@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>HOME/shoes market</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 <style>
 *{
     box-sizing: border-box;
@@ -51,8 +52,17 @@
 	 <div class="login-popup-heading text-center">
 	 <h4><i class="fa fa-lock" aria-hidden="true"></i> Goods </h4>                        
      </div>
+     
+     <!-- 検索ボックス設置 -->
+     <select id="item-select" class="form-control">
+     	<option value="">search</option>
+     	<option value="NIKE">NIKE</option>
+     	<option value="addidas">addidas</option>
+     	<option value="converse">converse</option>    
+     </select>
+     
 	<!-- item一覧表示 -->
-	<div class="text-center">
+	<div class="text-center active" id="item-list">
 	<c:forEach var="items" items="${itemsList}">	 
 	<div class="content">
 	<p><img src="../img/${items.imagePath}" width="213" height="250"/>
@@ -125,6 +135,39 @@
             return false;
         }); 
     });
+    </script>
+    
+    <script>
+    jQuery(function ($) {
+    // セレクトボックスが変更されたら処理をする
+    $('#item-select').change(function () {
+    
+        // 選択した値を取得
+        var select_val = $('#item-select option:selected').val();
+        
+        // tbodyのtr数回 処理をする
+        $.each($("#item-list .content"), function (index, element) {
+        
+            // 選択した値が空欄だったら、全ての行を表示する為の処理
+            if (select_val == "") {
+                $(element).css("display", "inline-block");
+                return true; // 次のtrへ
+            }
+            
+            // 1行をテキストとして取り出し、セレクトボックスで選択した値があるかをチェック
+            var row_text = $(element).text();
+            
+            if (row_text.indexOf(select_val) != -1) {
+                // 見つかった場合は表示する
+                $(element).css("display", "inline-block");
+            } else {
+                // 見つからなかった場合は非表示に
+                $(element).css("display", "none");
+            }
+
+        });
+    });
+});
     </script>
 	
 </body>
