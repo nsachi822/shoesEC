@@ -7,7 +7,7 @@ public class AddAccountForm {
 	private String password;
 	private String checkPassword;
 	private String tel;
-	private Integer postalCode;
+	private String postalCode;
 	private String address;
 	private String email;
 	
@@ -43,10 +43,10 @@ public class AddAccountForm {
 		this.tel = tel;
 	}
 	
-	public Integer getPostalCode() {
+	public String getPostalCode() {
 		return postalCode;
 	}
-	public void setPostalCode(Integer postalCode) {
+	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
 	public String getAddress() {

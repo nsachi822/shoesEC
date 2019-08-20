@@ -9,8 +9,9 @@
 <title>order confirmation/shoes market</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
 	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/ui-lightness/jquery-ui.css" >
+	
+	
 
 	<script>
 	function disp(){
@@ -78,16 +79,16 @@
 	<div class="login-popup-wrap new_login_popup">      
 	<form>
 	<div class="form-group">
-	name: <input class="form-control" type="text" name="name" placeHolder="Name"> <br>
+	name: <input class="form-control" type="text" name="name" value="${user.userName}"> <br>
 	</div>
 	<div class="form-group">
-	postal code: <input class="form-control" type ="text" name="postalCode" placeHolder="PostalCode"> <br>
+	postal code: <input class="form-control" type ="text" name="postalCode" value="${user.postalCode}"> <br>
 	</div>
 	<div class="form-group">
-	address: <input class="form-control" type ="text" name="address" placeHolder="Address"> <br>
+	address: <input class="form-control" type ="text" name="address" value="${user.address}"> <br>
 	</div>
 	<div class="form-group">
-	phone number: <input class="form-control" type ="text" name="phoneNumber" placeHolder="PhoneNumber"> <br>
+	phone number: <input class="form-control" type ="text" name="phoneNumber" value="${user.tel}"> <br>
 	</div>
 	<div class="form-group">
 	delivery date: <input  class="form-control" type="text" name ="orderDate" value="${order.orderDate}"  id="datepicker" form="order"><br>
@@ -102,10 +103,13 @@
      </div>
      						<div class="form-group">
      							<div class="text-center">
-							 <input type="radio" name="responsibleOrder" checked="checked"> cash
-							　<input type="radio" name="responsibleOrder" > credit card
+							 <input type="radio" name="responsibleOrder" onclick="entryChange1();" checked="checked"> cash
+							　<input type="radio" name="responsibleOrder" onclick="entryChange1();" > credit card
 								</div>
 							</div>
+							<div class="form-group" id="firstBox">
+							</div>
+							<div id="secondBox">
 							<div class="form-group">
 							card number：<input class="form-control" type = "text" placeholder ="card_number">
 							</div>
@@ -160,19 +164,41 @@
 							<div class="form-group">
 							security code： <input class="form-control" type="text" placeholder ="card_cvv" required>
 							</div>
+							</div>
 	<form:form modelAttribute="orderInfoForm" action="${pageContext.request.contextPath}/orderfinished" onClick="disp()"  id="order">
 	 <button class="btn btn-default login-popup-btn" type="submit">order</button>
 	</form:form>
 	</div>
 	 <div class="form-group text-center">
-	 <a href="${pageContext.request.contextPath}/cartlist/" class="text-center">back to your cart</a>		
+	 <a href="${pageContext.request.contextPath}/cartlist" class="text-center">back to your cart</a>		
 	</div>						
 							
 							
 <script>
   $(function() {
-    $("#datepicker").datepicker();
+    $("#datepicker").datepicker({
+    	
+    	minDate:0
+    });
+    
   });
+</script>
+<script type="text/javascript">
+	function entryChange1(){
+		radio = document.getElementsByName('responsibleOrder') 
+		if(radio[0].checked) {
+			//フォーム
+			document.getElementById('firstBox').style.display = "";
+			document.getElementById('secondBox').style.display = "none";
+		}else if(radio[1].checked) {
+			//フォーム
+			document.getElementById('firstBox').style.display = "none";
+			document.getElementById('secondBox').style.display = "";
+		}
+	}
+	
+	//オンロードさせ、リロード時に選択を保持
+	window.onload = entryChange1;
 </script>
 
 

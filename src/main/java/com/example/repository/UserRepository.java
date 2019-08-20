@@ -27,6 +27,7 @@ public class UserRepository {
 		user.setTel(rs.getString("tel"));
 		user.setAddress(rs.getString("address"));
 		user.setEmail(rs.getString("email"));
+		user.setPostalCode(rs.getString("postalcode"));
 		return user ;
 	};
 	
@@ -35,7 +36,7 @@ public class UserRepository {
 	
 //	ユーザー情報全権取得
 	public List <User>  findUserAll(){
-		String sql = "SELECT userid,username,password,tel,address,email FROM users";
+		String sql = "SELECT userid,username,password,tel,address,email,postalcode FROM users";
 		List<User> userList = template.query(sql,User_rowMapper);
 		return userList;
 		
@@ -44,7 +45,7 @@ public class UserRepository {
 //	emailとpasswordからメンバー情報を取得
 	public User findByEmailAndPassword(String email,String password) {
 		User user = null;
-		String sql = "SELECT userid,username,password,tel,address,email FROM users WHERE email=:email AND password =:password";
+		String sql = "SELECT userid,username,password,tel,address,email,postalcode FROM users WHERE email=:email AND password =:password";
 		
 		try {
 			SqlParameterSource param = new MapSqlParameterSource().addValue("email",email).addValue("password", password);
@@ -63,10 +64,10 @@ public class UserRepository {
 		
 		if(user.getUserId() == null) {
 			template.update(
-					"INSERT INTO users (username,password,tel,address,email) VALUES(:userName,:password,:tel,:address,:email)",param);
+					"INSERT INTO users (username,password,tel,address,email,postalcode) VALUES(:userName,:password,:tel,:address,:email,:postalCode)",param);
 		}else {
 			template.update(
-					"UPDATE users SET username=:userName, password=:password, tel=:tel, address=:address, email=:email WHERE userid=:userId",param);
+					"UPDATE users SET username=:userName, password=:password, tel=:tel, address=:address, email=:email, postalcode=:postalCode WHERE userid=:userId",param);
 		}
 		return user;
 								
