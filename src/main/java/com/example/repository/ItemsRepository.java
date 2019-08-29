@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,7 +37,16 @@ public class ItemsRepository {
 		return itemsList;
 	}
 	
-
+//item登録
+	public Items addItem(Items items) {
+		SqlParameterSource param = new BeanPropertySqlParameterSource(items);
+		String insertSql = "INSERT INTO items (itemname,price,brandname,imagepath) VALUES(:itemName, :price, :brandName, :imagePath)";
+		template.update(insertSql, param);
+		return items;
+		
+		
+	}
+	
 	
 	
 	

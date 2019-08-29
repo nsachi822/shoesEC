@@ -59,9 +59,30 @@
     </nav>  
 </c:if>
 
-<c:if test="${!check}">	
-	
-	
+<c:if test="${user.userName == 'Admin'}">			
+	<nav class="navbar navbar-expand-sm navbar-light bg-light mt-3 mb-3">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="${pageContext.request.contextPath}/list/">shoes market</a>
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav">
+            	<li class="nav-item">
+                    <a class="nav-link"> welcome,<c:out value="${user.userName}"/> </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/logout/sessionInvalidate">logout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/items/addform">add items</a>
+                </li>                
+            </ul>
+        </div>
+    </nav>  
+</c:if>
+
+
+<c:if test="${!check and user.userName!='Admin'}">	
 	<nav class="navbar navbar-expand-sm navbar-light bg-light mt-3 mb-3">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav4" aria-controls="navbarNav4" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -85,6 +106,7 @@
         </div>
     </nav>  
 </c:if>
+
 
 
 	

@@ -19,5 +19,8 @@ public class ItemsService {
 		return itemsRepository.findItems();
 	}
 
+	public Items addItem(Items items) {
+		return itemsRepository.addItem(items);
+	}
 	
 }

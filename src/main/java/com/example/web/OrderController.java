@@ -6,6 +6,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,6 +31,8 @@ public class OrderController {
 	@Autowired
 	private ServletContext application;
 
+	@Autowired
+	private JavaMailSender javaMailSender;
 	
 	@ModelAttribute
 	public ItemOrderForm itemOrderForm() {
@@ -119,7 +123,7 @@ public class OrderController {
 	}
 	
 	@RequestMapping(value="/orderfinished")
-	public String orderfinish(Model model, Order order,OrderInfoForm oiForm) {
+	public String orderfinish(Model model, Order order,OrderInfoForm oiForm,User user) {
 		
 		Long orderId = oiForm.getOrderId();
 		Integer userId = oiForm.getUserId();
@@ -136,7 +140,19 @@ public class OrderController {
 		orderService.setOrder(order);
 		
 		orderService.deleteAll();
-
+		
+/*		
+		String email = user.getEmail();
+		SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setTo("nsachi822@gmail.com");
+//      msg.setCc("送信先メールアドレス2", "送信先メールアドレス3");
+//      msg.setBcc("送信先メールアドレス4");
+        msg.setSubject("【shoes market】Order Confirmation");
+        msg.setText("Thank you for shopping at shoes market.");
+        
+        // メール送信
+        javaMailSender.send(msg);
+*/
 		return "complete";
 	}
 	
@@ -148,4 +164,5 @@ public class OrderController {
 		return "orderhistory";
 		
 	}
+		
 }

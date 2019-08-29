@@ -2,11 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ include file="common.jsp"  %> 
 <!DOCTYPE html>
-<html lang="ja" xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/user.css">
-<script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+<script src="https://webjars/jquery/3.3.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>shoes market/order history</title>
@@ -39,17 +38,19 @@
 	
 	</table>
 		</div>
-	
-<!--  	
-<form id="csvform" method="post" th:action="@{/download/csv}">
+
+<!-- csv download -->
+<div class="login-popup-wrap new_login_popup"> 
+<form id="csvform" method="post" action="${pageContext.request.contextPath}/download/csv">
 	<input type="hidden" value="${order.orderId}">
 	<input type="hidden" value="${order.date}">
 	<input type="hidden" value="${order.totalPrice}">
 	<input type="hidden" value="${order.orderDate}">
     <input type="hidden" name="filename"/>
-    <button type="submit">送信</button>
+    <button type="submit" class="btn btn-default login-popup-btn">csv</button>
 </form>
--->
+</div>
+
 
 
 
