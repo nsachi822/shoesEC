@@ -78,7 +78,7 @@ public class OrderRepository {
 //	orderにinsert
 	public Order setOrder(Order order) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
-		String insertSql = "INSERT INTO orders(userid,totalprice, status,orderdate,date,itemname) VALUES(:userId, :totalPrice, :status, :orderDate, current_timestamp,:itemName)";
+		String insertSql = "INSERT INTO orders(userid,totalprice, status,orderdate,date,itemname) VALUES(:userId, :totalPrice, :status, :orderDate, current_timestamp::date,:itemName)";
 		template.update(insertSql,param);
 		return order;
 		

@@ -30,7 +30,7 @@
 	<tr>
 		<td><c:out value="${order.orderId}"/></td>
 		<td><c:out value="${order.date}"/></td>
-		<td><c:out value="${order.totalPrice}"/></td>
+		<td><fmt:formatNumber value="${order.totalPrice}" pattern="###,###"/></td>
 		<td><c:out value="${order.orderDate}"/></td>	
 	</tr>
 	</c:if>

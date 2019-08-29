@@ -180,6 +180,7 @@
     	
     	minDate:0
     });
+    $('#datepicker').datepicker("option", "dateFormat", 'yy-mm-dd' );
     
   });
 </script>
